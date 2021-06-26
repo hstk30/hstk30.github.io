@@ -58,7 +58,7 @@ ga_domain: auto
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
 sidebar-about-description: "看书，写代码，听音乐，打篮球，看海贼，吃饭和睡觉"
-sidebar-avatar: /img/me.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-avatar: /img/me.JPG      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 # Featured Tags
