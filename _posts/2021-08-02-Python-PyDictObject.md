@@ -341,6 +341,16 @@ dictresize(dictobject *mp, Py_ssize_t minused)
 
 `cPython-3.6` 中对我们这里将的`dict` 进行了一次大的改进，有空再去学习一下。也可以看一下这个老哥写的[cPython-Internals-dict](https://github.com/zpoint/CPython-Internals/blob/master/BasicObject/dict/dict_cn.mdv)，里面讲的就是新的`dict` 的实现细节。
 
+--
+
+找到一篇大佬
+[Raymond Hettinger](https://twitter.com/raymondh)  
+写的
+[PROOF-OF-CONCEPT FOR A MORE SPACE-EFFICIENT, FASTER-LOOPING DICTIONARY](https://code.activestate.com/recipes/578375/)。
+用`Python` 实现新型`dict` ，原来大佬12年就提出来了，结果16年才正式添加到`cPython` 里。
+
+这个`Python` 实现写的非常清晰，不在话下。
+
 
 
 [^1]: 《Python源码剖析》
