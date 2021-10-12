@@ -204,6 +204,31 @@ int polymorphism() {
 我们能像正常使用`Man` 一样，使用这个转换后的数据。并且相同的代码，出现了不同的行为。
 
 
+## 一个Linux 中的高级用法
+
+> `typeof` is a compiler extension(GNU).
+>  In a nutshell it's a convenient way to declare an object having the same type as another. For example:  
+> `int x;         /* Plain old int variable. */`  
+> `typeof(x) y;   /* Same type as x. Plain old int variable. */`  
+> It works entirely at compile-time and it's primarily used in macros. One famous example of macro relying on typeof is container_of.
+
+```c
+/**
+ * container_of - cast a member of a structure out to the containing structure
+ *
+ * @ptr:	the pointer to the member.
+ * @type:	the type of the container struct this is embedded in.
+ * @member:	the name of the member within the struct.
+ *
+ */
+#define container_of(ptr, type, member) ({			\
+        const typeof( ((type *)0)->member ) *__mptr = (ptr);	\
+        (type *)( (char *)__mptr - offsetof(type,member) );})
+
+#define offsetof(TYPE, MEMBER) ((size_t) &((TYPE *)0)->MEMBER)
+
+```
+
 ## 总结
 
 就是这么简单。这也是`C语言` 的主要特点和优势，**通过指针直接操纵内存数据**，而在写`Python` 时，基本上就没有内存这个概念。
