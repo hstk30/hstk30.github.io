@@ -70,6 +70,59 @@ static struct arena_object* usable_arenas = NULL;
  
 ```
 
+Python 内存管理结构总览
+
+![pymalloc-layout](/img/in-post/Python-Source-Code/pymalloc-layout.png)    
+
+
+## Pool 管理
+
+### 三种状态
+
+- **可用的**(used) : 至少分配了一个`block`，并且至少还有一个`block` 没有被分配。一个`pool` 中的`block size` 相同。这些相同`size i` 的`pool` 被链接在
+	`双向循环链表usedpool[i + i]` 上。如果一个`pool` 中所有的`block` 都被分配了，这个`pool` 进入**full** 状态。如果一个`pool` 中所有的`block` 都被释放
+	则进入**empty** 状态。
+- **满的**(full)：所有的`block` 都被分配了。当一个`pool` 进入**full** 状态，则从`usedpool[i + i]` 链表中删除这个`pool`。当其中有`block` 被释放时，重新
+	链接进`usedpool[i +i]` ，即`block size` 不变。
+- **空的**(empty)： 所有的`block` 都是可分配的。当一个`pool` 进入**empty** 状态，则从`usedpool[i + i]` 链表中删除这个`pool`，并且链接到
+	`单向链表arena_object->freepools` 中。当一个内存申请发现对应`size i` 的`usedpool[i + i]` 是空的，则从`arena_object_freepools` 中取出第一个
+	`pool`，并且将这个`pool` 初始化为对应`block size` 的。如果之前这个`pool` 就是这个`block size` 的，就可以跳过这个初始化。
+
+## Block 管理
+
+`单向链表pool_header->freeblock` 指向`pool` 中空闲的`block`。`pool` 的`blocks` 在一开始只是一坨未初始化的内存，并没有链接在一起。在未进行释放前，这个`pool` 的`block` 分配简单的通过:
+
+```
+bp = pool_header->freeblock;
+pool_header->freeblock = (block *)pool + pool->nextoffset;  \\将freeblock 指向nextoffset
+pool_header->nextoffset += block size;  \\ 将nextoffset 增加一个block size
+return bp;
+```
+
+直到`nextoffset > maxnextoffset`。
+
+而当一个`block` 被释放，这个`block` 被插入到`poolheader->freeblock` 的表头。此时，再申请内存，则从`freeblock` 中取走表头的`block` 即可。
+
+
+## Arena 管理 
+
+```
+static struct arena_object* arenas = NULL;  // 简单的arena_object 的动态数组
+```
+
+
+```
+static struct arena_object* unused_arena_objects = NULL;  // 一条链接当前被释放完了的`arena` 的`单向链表`
+```
+
+
+
+ 
+```
+static struct arena_object* usable_arenas = NULL;
+```
+
+
 
 
 
