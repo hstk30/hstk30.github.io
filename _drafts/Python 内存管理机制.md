@@ -1,5 +1,13 @@
 # Python 内存管理机制
 
+Python 内存管理结构总览
+
+![pymalloc-layout](/img/in-post/Python-Source-Code/pymalloc-layout.png)    
+
+
+## Pool 管理
+
+![pool-layout](/img/in-post/Python-Source-Code/pool-layout.png)    
 
 ```
 typedef uchar block;  
@@ -15,67 +23,7 @@ struct pool_header {
 	uint nextoffset;        /* bytes to virgin block     */
 	uint maxnextoffset;     /* largest valid nextoffset  */
 };
- 
-struct arena_object {
- /* The address of the arena, as returned by malloc.  Note that 0
-  * will never be returned by a successful malloc, and is used
-  * here to mark an arena_object that doesn't correspond to an
-  * allocated arena.
-  */
-	uptr address;
-	
-	/* Pool-aligned pointer to the next pool to be carved off. */
-	block* pool_address;
-	
-	/* The number of available pools in the arena:  free pools + never-
-	* allocated pools.
-	*/
-	uint nfreepools;
-	
-	/* The total number of pools in the arena, whether or not available. */
-	uint ntotalpools;
-	
-	/* Singly-linked list of available pools. */
-	struct pool_header* freepools;
-	
-	struct arena_object* nextarena;
-	struct arena_object* prevarena;
-};
- 
-#define PTA(x)  ((poolp )((uchar *)&(usedpools[2*(x)]) - 2*sizeof(block *)))
-#define PT(x)   PTA(x), PTA(x)
-
-static poolp usedpools[2 * ((NB_SMALL_SIZE_CLASSES + 7) / 8) * 8] = {
- PT(0), PT(1), PT(2), PT(3), PT(4), PT(5), PT(6), PT(7)
- , PT(8), PT(9), PT(10), PT(11), PT(12), PT(13), PT(14), PT(15)
- , PT(16), PT(17), PT(18), PT(19), PT(20), PT(21), PT(22), PT(23)
- , PT(24), PT(25), PT(26), PT(27), PT(28), PT(29), PT(30), PT(31)
- , PT(32), PT(33), PT(34), PT(35), PT(36), PT(37), PT(38), PT(39)
- , PT(40), PT(41), PT(42), PT(43), PT(44), PT(45), PT(46), PT(47)
- , PT(48), PT(49), PT(50), PT(51), PT(52), PT(53), PT(54), PT(55)
- , PT(56), PT(57), PT(58), PT(59), PT(60), PT(61), PT(62), PT(63)
-};
- 
-/* Array of objects used to track chunks of memory (arenas). */
-static struct arena_object* arenas = NULL;
-/* The head of the singly-linked, NULL-terminated list of available
-* arena_objects.
-*/
-static struct arena_object* unused_arena_objects = NULL;
- 
-/* The head of the doubly-linked, NULL-terminated at each end, list of
-* arena_objects associated with arenas that have pools available.
-*/
-static struct arena_object* usable_arenas = NULL;
- 
 ```
-
-Python 内存管理结构总览
-
-![pymalloc-layout](/img/in-post/Python-Source-Code/pymalloc-layout.png)    
-
-
-## Pool 管理
 
 ### 三种状态
 
@@ -106,21 +54,69 @@ return bp;
 
 ## Arena 管理 
 
+![arena-layout](/img/in-post/Python-Source-Code/arena-layout.png)    
+
+
+```
+struct arena_object {
+ /* The address of the arena, as returned by malloc.  Note that 0
+  * will never be returned by a successful malloc, and is used
+  * here to mark an arena_object that doesn't correspond to an
+  * allocated arena.
+  */
+	uptr address;
+	
+	/* Pool-aligned pointer to the next pool to be carved off. */
+	block* pool_address;
+	
+	/* The number of available pools in the arena:  free pools + never-
+	* allocated pools.
+	*/
+	uint nfreepools;
+	
+	/* The total number of pools in the arena, whether or not available. */
+	uint ntotalpools;
+	
+	/* Singly-linked list of available pools. */
+	struct pool_header* freepools;
+	
+	struct arena_object* nextarena;
+	struct arena_object* prevarena;
+};
+```
+
+
 ```
 static struct arena_object* arenas = NULL;  // 简单的arena_object 的动态数组
-```
+static struct arena_object* unused_arena_objects = NULL;  // 单向链表，链接还没有被真正分配内存的`arena`，即`.address == 0` 
 
-
-```
-static struct arena_object* unused_arena_objects = NULL;  // 一条链接当前被释放完了的`arena` 的`单向链表`
-```
-
-
-
- 
-```
+/*
+	双向链表，链接有`pool` 可用的`arena`。这条链按`.nfreepool` 的升序排列，使得下一次分配都从
+	`.nfreepools` 最小的`arena` 进行分配。从而当用有内存释放时，使得`.nfreepools` 大的`arena` 有机会
+	进入`empty`，即`arena` 中的`pool` 都为`empty`，从而使得这个`arena` 的内存可以释放回系统内存。
+*/  
 static struct arena_object* usable_arenas = NULL;
 ```
+
+
+## 可用pool 缓存池--usedpools
+
+```
+#define PTA(x)  ((poolp )((uchar *)&(usedpools[2*(x)]) - 2*sizeof(block *)))
+#define PT(x)   PTA(x), PTA(x)
+
+static poolp usedpools[2 * ((NB_SMALL_SIZE_CLASSES + 7) / 8) * 8] = {
+ PT(0), PT(1), PT(2), PT(3), PT(4), PT(5), PT(6), PT(7)
+ , PT(8), PT(9), PT(10), PT(11), PT(12), PT(13), PT(14), PT(15)
+ , PT(16), PT(17), PT(18), PT(19), PT(20), PT(21), PT(22), PT(23)
+ , PT(24), PT(25), PT(26), PT(27), PT(28), PT(29), PT(30), PT(31)
+ , PT(32), PT(33), PT(34), PT(35), PT(36), PT(37), PT(38), PT(39)
+ , PT(40), PT(41), PT(42), PT(43), PT(44), PT(45), PT(46), PT(47)
+ , PT(48), PT(49), PT(50), PT(51), PT(52), PT(53), PT(54), PT(55)
+ , PT(56), PT(57), PT(58), PT(59), PT(60), PT(61), PT(62), PT(63)
+};
+```
+
 
 
 
