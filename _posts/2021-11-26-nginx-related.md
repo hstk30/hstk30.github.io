@@ -94,6 +94,48 @@ client -> nginx -> upstream server
 
 所以需要把`client` 与`nginx` 的请求超时时间、建立连接超时时间，`nginx` 与`server` 的请求超时时间、建立连接超时时间等超时时间一起考虑，这就需要不同组之间进行沟通、确认。
 
+#### `proxy_next_stream` 和 `upstream_response_time `
+
+> Syntax:	proxy_next_upstream error | timeout | invalid_header | http_500 | http_502 | http_503 | http_504 | http_403 | http_404 | http_429 | non_idempotent | off ...;  
+> Default:	proxy_next_upstream error timeout;  
+> Context:	http, server, location  
+> Specifies in which cases a request should be passed to the next server
+
+当出现声明的case 的时候就传给下一个server 去处理。比如，有以下配置
+
+```
+upstream flask-test {
+	server 127.0.0.1:5000  fail_timeout=30s max_fails=20;  # server 1
+	server 127.0.0.1:5001  fail_timeout=30s max_fails=20;  # server 2
+}
+
+server{
+    listen 8600 default;
+    server_name   0.0.0.0;
+    location / {
+        proxy_pass http://flask-test;
+        proxy_next_upstream error timeout non_idempotent;
+        proxy_read_timeout 10s;
+        proxy_set_header NGINX_SEND_TIME $time_local;
+    }
+}
+```
+
+当一个请求先到server 1， 但是server 1 比较忙，用了11s (> `proxy_read_timeout`) 才返回，则nginx 将这个请求发给server 2继续处理。这时，同一个请求就会被上游处理两边，如果这个请求会改变*状态*，则可能出错。
+
+> keeps time spent on receiving the response from the upstream server; the time is kept in seconds with millisecond resolution. Times of several responses are separated by commas and colons like addresses in the $upstream_addr variable.
+
+`upstream_response_time` 记录从上游服务器接收相应所花的时间。以秒为单位，精确到毫秒。多个响应的时间用逗号分隔。
+
+如，在`log format` 中写了`$request_time $upstream_response_time`
+
+ 则有timeout 出现时，日志可能像
+ 
+ ```
+ 19.013 10.001, 9.012
+ ```
+
+
 ## reload 客户端依然报错
 
 虽然NGINX 是平滑重启的，但是没有和客户端保持一致。
