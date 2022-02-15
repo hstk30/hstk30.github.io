@@ -341,4 +341,8 @@ def get_norm_text_and_pos_map(input_str):
 
 真的能忍吗？ 他觉得忍不了，看了下对应的函数，虽然丑了点，但是还能读懂，并且还有8个unittest，瞬间就有了改老代码的底气。
 
+### 参考
+
+[python-mock-library](https://realpython.com/python-mock-library/)
+
 

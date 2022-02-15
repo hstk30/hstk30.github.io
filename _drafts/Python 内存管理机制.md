@@ -4,6 +4,7 @@ Python 内存管理结构总览
 
 ![pymalloc-layout](/img/in-post/Python-Source-Code/pymalloc-layout.png)    
 
+源码文件：`Object/obmalloc.c`
 
 ## Pool 管理
 
