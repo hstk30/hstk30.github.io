@@ -1,3 +1,12 @@
+---
+layout:     post
+title:      "Clean Code 摘录"
+date:       2021-09-17
+author:     "hstk30"
+tags:
+    - 读后感
+---
+
 #  Clean Code 摘录
 
 一直以为，`Java` 是一门非常依赖`IDE` 的语言。这本书里，`Bob 大叔` 其实也不断的提及现代工具、`IDE` 等词。
