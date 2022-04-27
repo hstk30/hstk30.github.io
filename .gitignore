@@ -7,3 +7,5 @@ node_modules
 gemfile.lock
 package-lock.json
 .jekyll-cache
+vendor/*
+.bundle/config
