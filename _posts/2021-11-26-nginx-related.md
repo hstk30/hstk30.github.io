@@ -151,4 +151,6 @@ server{
 
 [Nginx Connection Reset 问题排查](https://segmentfault.com/a/1190000038463522)
 
+[NginxDoc-load-balancing](http://nginx.org/en/docs/http/load_balancing.html)
+
 

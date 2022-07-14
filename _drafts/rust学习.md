@@ -109,4 +109,4 @@ impl FnMut for MyClosure {
 
 ## 参考
 
-[可视化 Rust 各数据类型的内存布局](https://github.com/rustlang-cn/Rustt/blob/main/Articles/%5B2022-05-04%5D%20%E5%8F%AF%E8%A7%86%E5%8C%96%20Rust%20%E5%90%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80.md)
+[可视化 Rust 各数据类型的内存布局](https://www.youtube.com/watch?v=rDoqT-a6UFg)
