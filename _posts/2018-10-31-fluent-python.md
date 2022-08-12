@@ -3,6 +3,7 @@ layout:     post
 title:      "Fluent Python 小记"
 date:       2018-10-31
 author:     "hstk30"
+header-img: "img/accompany-3.jpg"
 tags:
     - Python
 ---

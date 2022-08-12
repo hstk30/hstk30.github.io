@@ -3,6 +3,7 @@ layout:     post
 title:      "会话式重写中遇到的问题"
 date:       2022-08-08
 author:     "hstk30"
+header-img: "img/envy.jpeg"
 tags:
     - 深度学习
 --- 

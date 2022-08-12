@@ -4,6 +4,7 @@ title:      "神经网络初步理解"
 subtitle: 	"使用数学方法形式上表示深度学习模型"
 date:       2021-06-23
 author:     "hstk30"
+header-img: "img/confuse.png"
 tags:
     - 数学分析
     - 深度学习

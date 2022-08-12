@@ -3,7 +3,7 @@ layout:     post
 title:      "C语言中结构体指针的强制类型转换"
 subtitle:   "顺便实现一个小多态"
 date:       2021-08-14
-header-img:	"img/envy.jpeg"
+header-img:	"img/sucess.jpg"
 author:     "hstk30"
 tags:
     - c语言

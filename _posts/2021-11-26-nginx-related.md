@@ -3,6 +3,7 @@ layout:     post
 title:      "nginx 相关问题记录"
 date:       2021-11-26
 author:     "hstk30"
+header-img: "img/tame.jpg"
 tags:
     - nginx
 ---

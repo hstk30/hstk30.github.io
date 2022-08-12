@@ -3,6 +3,7 @@ layout:     post
 title:      "中文拼写纠错"
 date:       2022-08-08
 author:     "hstk30"
+header-img: "img/arrive.jpg"
 tags:
     - 深度学习
 --- 
@@ -40,5 +41,7 @@ tags:
 - 分词直接按字力度分词即可
 - 训练量比较大，`batch_size` 设不了很高，使用梯度累加更新效果应该会好一下
 
-- [FASPell](https://aclanthology.org/D19-5522/)
+## 参考
+
+[FASPell](https://aclanthology.org/D19-5522/)
 

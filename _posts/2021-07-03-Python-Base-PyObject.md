@@ -3,6 +3,7 @@ layout:     post
 title:      "Python对象机制基石——PyObject"
 date:       2021-07-03
 author:     "hstk30"
+header-img: "img/meet.jpg"
 tags:
     - Python
 ---
