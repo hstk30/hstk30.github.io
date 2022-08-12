@@ -3,7 +3,7 @@ layout:     post
 title:      "进程、事件循环的一个类比"
 date:       2021-08-05
 author:     "hstk30"
-header-img: "img/arrive.jpeg"
+header-img: "img/arrive.jpg"
 tags:
     - 随笔
 ---
