@@ -4,6 +4,7 @@ title:      "Python对象机制基石——PyObject"
 date:       2021-07-03
 author:     "hstk30"
 header-img: "img/meet.jpg"
+description: "不识庐山真面目，只缘身在此山中。"
 tags:
     - Python
 ---

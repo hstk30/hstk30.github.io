@@ -4,6 +4,7 @@ title:      "Fluent Python 小记"
 date:       2018-10-31
 author:     "hstk30"
 header-img: "img/accompany-3.jpg"
+description: "正是江南好风景，落花时节又逢君。"
 tags:
     - Python
 ---

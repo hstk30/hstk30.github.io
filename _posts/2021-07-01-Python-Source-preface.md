@@ -4,6 +4,7 @@ title:      "Python源码阅读前言"
 date:       2021-07-01
 author:     "hstk30"
 header-img: "img/prospect.jpg"
+description: "欲穷千里目，更上一层楼。"
 tags:
     - Python
 ---
