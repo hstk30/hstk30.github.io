@@ -15,9 +15,9 @@ tags:
 ## 散列表
 嗯，基本面试的时候都会问一下散列表，基本就回答下解决冲突的几种方法：  
 
-1. 开放定址法
-2. 链地址法
-3. 双哈希
+1. 分离链接法
+2. 开放定址法
+3. 再散列: 申请一个更大的表，将原来的项再散列，插入到新表中。
 
 巴拉巴拉，就敷衍过去了，(*￣︶￣)
 
@@ -59,8 +59,10 @@ note: 这里我把`c` 中的`struct` 直接抽象成了类图。
 
 ### 动态表
 
-和`list` 不同，`dict` 的动态扩张不止是为了其装载因子为1时进行自动扩张，最主要的是保持`dict` 的装载因子在某个值之下，
-从而使得散列冲突发生的概率减小。`Python-2.5.1` 中将这个装载因子设置为**2/3**。
+也有说是 **再散列** 的，当装载因子大于某个值后，就进行扩容，将原来的项 **再散列** 到新的表中。 
+和`list` 不同，`dict` 的动态扩张不止是为了其装载因子为1时进行自动扩张，
+最主要的是保持`dict` 的装载因子在某个值之下， 从而使得散列冲突发生的概率减小。
+`Python-2.5.1` 中将这个装载因子设置为**2/3**。
 
 
 ## 源码分析
@@ -340,7 +342,7 @@ dictresize(dictobject *mp, Py_ssize_t minused)
 
 > The dict type has been reimplemented to use a more compact representation based on a proposal by Raymond Hettinger and similar to the PyPy dict implementation. This resulted in dictionaries using 20% to 25% less memory when compared to Python 3.5. [^2]
 
-`cPython-3.6` 中对我们这里将的`dict` 进行了一次大的改进，有空再去学习一下。也可以看一下这个老哥写的[cPython-Internals-dict](https://github.com/zpoint/CPython-Internals/blob/master/BasicObject/dict/dict_cn.mdv)，里面讲的就是新的`dict` 的实现细节。
+`cPython-3.6` 中对我们这里将的`dict` 进行了一次大的改进，有空再去学习一下。也可以看一下这个老哥写的[cPython-Internals-dict](https://github.com/zpoint/CPython-Internals/blob/master/BasicObject/dict/dict_cn.md)，里面讲的就是新的`dict` 的实现细节。
 
 --
 
