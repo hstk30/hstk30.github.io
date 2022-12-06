@@ -4,8 +4,9 @@ title:      "Clean Code 摘录"
 date:       2021-09-17
 author:     "hstk30"
 header-img:	"img/accompany-3.jpg"
+description: "纸上得来终觉浅 绝知此事要躬行。"
 tags:
-    - 读后感
+    - 读书笔记
 ---
 
 #  Clean Code 摘录

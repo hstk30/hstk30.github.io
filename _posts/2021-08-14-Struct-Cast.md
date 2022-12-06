@@ -5,6 +5,7 @@ subtitle:   "顺便实现一个小多态"
 date:       2021-08-14
 header-img:	"img/sucess.jpg"
 author:     "hstk30"
+description: "自古圣贤尽贫贱，何况我辈孤且直！"
 tags:
     - c语言
 ---

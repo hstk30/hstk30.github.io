@@ -1,3 +1,15 @@
+---
+layout:     post
+title:      "stat 的代价很高"
+date:       2021-12-23
+header-img:	"img/accompany-2.jpeg"
+author:     "hstk30"
+description: "量大福也大，机深祸也深。"
+tags:
+    - 编程问题记录
+---
+
+
 # 一个日志引发的性能问题
 
 

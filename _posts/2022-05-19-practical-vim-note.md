@@ -1,3 +1,16 @@
+---
+layout:     post
+title:      "PracticalVim 笔记"
+date:       2022-05-19
+author:     "hstk30"
+header-img: "img/tame.jpg"
+description: "熟能通其窍，精能尽其妙。"
+tags:
+    - Vim
+    - 读书笔记
+---
+
+
 # Practical Vim note
 
 ## core
@@ -95,13 +108,20 @@ other like **\`[** , **\`]** , **\`<** , **\`>** use less.
 #### Combo
 
 1. `[reg] {operator} {motion}`, like `"ayiw -> "ap`
-2. insert mode: `<C-r> {reg}`, like `<C-r> 0`
+2. Insert/EX mode: `<C-r> {reg}`, like `<C-r> 0`, `:%s//<C-r>0/g`
 
 ### macros
 
 pass
 
 ## patterns
+
+### specify a broad pattern
+
+- `\zs`: set the start of the match
+- `\ze`: set the end of the match
+
+like: `/\v[\zs\a*\ze\]` search all normal word in `[]`, but just match the word.
 
 
 ### search-offset
@@ -121,9 +141,17 @@ So `//e<CR>` incrementally search.
 
 #### s_flags
 
+- `&`: use the previous substitute's flags
 - `g`: *global* line
 - `c`: confirm
 - `n`: Report the number of matches, do not actually substitute
+
+
+#### tips
+
+1. `g&` == `:%s//~/&`: repeat last substitute
+2. `:'<,'>&&`: select range in visual mode, then replay the substitute by `:&&`
+3. `:%&&` == `g&`
 
 
 

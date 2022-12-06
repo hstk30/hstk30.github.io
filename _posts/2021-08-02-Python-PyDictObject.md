@@ -4,6 +4,7 @@ title:      "Python Dict对象解析--PyDictObject"
 date:       2021-08-02
 author:     "hstk30"
 header-img: "img/prospect.jpg"
+description: "擎天白玉柱，架海紫金梁。"
 tags:
     - Python
     - C
