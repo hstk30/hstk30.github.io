@@ -25,7 +25,7 @@ tags:
 - line search action: `f{char} ;.;.;.`
 - search action: `/pattern {action} n.n.n.`, `* {action} n.n.n.`
 - macros: `q{reg} {actions} q @{reg} {move} @@ {move} @@`
-
+- normal: `:[range]normal {cmd}`
 
 ## mode
 
@@ -86,9 +86,29 @@ need keystrokes `www` to move from `e` to `W` , but `W` to reach directly.
 Like: `dt.` delete till char `.` , exclude char `.` .
 
 
-### text objects
+### text-objects
 
-So important, and use it so frequent that omniscient.
+#### Build-in text-objects
+
+- `aw` `iw`: a/inner word
+- `aW` `iW`: a/inner **WORD**
+- `as` `is`: a/inner sentence
+- `ap` `is`: a/inner paragraph
+- `a]` `i]`: a/inner **[]**
+- `a)` `i)`: a/inner **()**
+- `a>` `i>`: a/inner **<>**
+- `at` `it`: a/inner **<xml></xml>**
+- `a}` `i}`: a/inner **Block**
+- `a\"` `i\"`: a/inner **\"**
+- `a\'` `i\'`: a/inner **\'**
+
+#### other useful text-object
+
+- `aa` `ia`: a/inner argument provided by [argtextobj.vim](https://www.vim.org/scripts/script.php?script_id=2699)
+- `ai` `ii` `aI` `iI`: a/inner same indentation level provided by [vim-indent-object](https://github.com/michaeljsmith/vim-indent-object)
+- `ae` `ie`: a/inner entire content of a buffer provided by [vim-textobj-entire](https://github.com/kana/vim-textobj-entire)
+
+... 
 
 
 ### marks
@@ -109,13 +129,25 @@ So important, and use it so frequent that omniscient.
 
 Visual model + `:`: `:'<,'>` select the visual range.
 
+### tips
+
+- Mark the position by `mm` before search `/pattern`, 
+    when done all matched, return the marked position by **\`m**
+
 
 ## files
 
 [LeaderF](https://github.com/Yggdroot/LeaderF) is super useful.
 
+#### argument-list, buffer-list
+
+- `:argdo {cmd}`, like `:argdo normal @{reg}`
+- `:bufdo {cmd}`
 
 ## registers
+
+> Vim’s registers are no more than containers for strings of text.
+
 
 ### special registers
 
@@ -148,7 +180,17 @@ Insert the object under the cursor:
 
 ### macros
 
-Pass
+#### tips 
+
+- **Ex Command** can also be record
+- use `q{upper char}` to append extra cmd to the exist `cmds`
+
+#### Combo
+
+1. `q{reg} {change cmd} {repeatable motion}`, `100@{reg}`: ensure the record action 
+    start/end with a **repeatable motion** like `n/f{x}/w/...`
+2. repeat **Dot Operator**: `qq {motion}. q` + `{num}@q`, like `qq ;. q 22@q`
+
 
 ## patterns
 
@@ -258,9 +300,21 @@ Use [vim-gutentags](https://github.com/ludovicchabant/vim-gutentags) to generate
 
 + `<C-x>s` : spell correct automatically in the insert mode
 
+## misc
+
+- `g`字诀
+- `z`字诀
+- `[]`字诀
+
 ## end
 
 Practice -> Pain -> Patient -> Practice ... -> Perfect
 
 `:x`
 
+## More 
+
+- [VIM 中文参考手册](https://vimcdoc.sourceforge.net/doc/)
+- [VIM docs](https://vimdoc.sourceforge.net/)
+- [Seven habits of effective text editing](https://www.moolenaar.net/habits.html)
+- [vimcasts.org](http://vimcasts.org/episodes/)
