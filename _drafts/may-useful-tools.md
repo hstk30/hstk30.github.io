@@ -7,3 +7,5 @@
 - [interactive_latencies](https://colin-scott.github.io/personal_website/research/interactive_latency.html): 对硬件速度的基础认识
 - [Web Framework Benchmarks](https://www.techempower.com/benchmarks/#section=intro): 后端框架性能对比（看看就行）
 - [UserBenchmark](https://www.userbenchmark.com/): 计算机硬件对比（我不懂硬件）
+- [Python Special Methods](https://diveintopython3.net/special-method-names.html): Python 的特殊方法对应关键词、内置函数等
+

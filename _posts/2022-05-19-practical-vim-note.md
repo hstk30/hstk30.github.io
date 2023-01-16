@@ -121,7 +121,7 @@ Like: `dt.` delete till char `.` , exclude char `.` .
 
 - **\`\`** : last jump within current file
 - **\`\.** : last change
-- **\`\^** : last insert
+- **\`^** : last insert
 - **\`[** :  start of last change or yank
 - **\`]** :  end of last change or yank
 - **\`<** :  start of last visual selection
@@ -133,6 +133,8 @@ Visual model + `:`: `:'<,'>` select the visual range.
 
 - Mark the position by `mm` before search `/pattern`, 
     when done all matched, return the marked position by **\`m**
+- Search by `vimgrep` or `ack` in project files, mark the position by `mM` first, 
+    return the marked position by **\`M**
 
 
 ## files
@@ -183,7 +185,7 @@ Insert the object under the cursor:
 #### tips 
 
 - **Ex Command** can also be record
-- use `q{upper char}` to append extra cmd to the exist `cmds`
+- use `q{upper char}` to append extra cmd to the exist `cmd`
 
 #### Combo
 
