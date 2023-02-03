@@ -324,11 +324,42 @@ Use [vim-gutentags](https://github.com/ludovicchabant/vim-gutentags) to generate
 
 ### `g`字诀
 
+`g` 有`go` 之意，所以`g` 相关的命令大多有 `go to` 之意。
+
+#### 常用命令
+
+- `gg` : *去到* 文件第一行
+- `gf` : 在VIM内 *去到* 光标下文件
+- `gx` : 使用系统默认应用 *去到* 光标下文件，可以使用浏览器打开光标下 **URL** ，比较有用
+- `gi` : *去到* 上次进行INSERT的位置
+- `gv` : 重新 *去到* 上次VISUAL的内容，并进入VISUAL模式
+- `gn` : *去到* 下一个 **search** 匹配到的模式，并VISUAL匹配的内容
+- `gd` : *去到* 光标下单词的定义处
+- `gt` : *去到* 下一个 **tab**
+- `gT` : *去到* 上一个 **tab**
+
+
 ### `z`字诀
+
+大多和 *折叠* ( *fold* ) 相关
+
+#### 常用命令
+
+- `zf` : 创建 *折叠*，跟随`motion` 或先VISUAL 选择一个区域
+- `zd` : 删除当前光标下的一层 *折叠*
+- `zD` : 删除当前光标下的所有 *折叠*
+- `zE` : 清除所有 *折叠*
+- `zo` : 打开当前光标下的 *折叠*
+- `zc` : 关闭当前光标下的 *折叠*
+- `zR` : 打开所有 *折叠*
+- `zM` : 关闭所有 *折叠*
+
 
 ###  `[`字诀
 
-大多`[` 相关的命令和前进/后退相关，因此有
+#### 基本概念
+
+大多`[` 相关的命令有前进/后退之意，因此有
 
 [vim-unimpaired](https://github.com/tpope/vim-unimpaired)
 
@@ -352,14 +383,24 @@ Use [vim-gutentags](https://github.com/ludovicchabant/vim-gutentags) to generate
 作用区域： **sentence** `<=` **paragraph** `<=` **section**
 
 
-- `)` : forword sentence
-- `(` : backword sentence
-- `}` : forword paragraph
-- `{` : backword paragraph
-- `]]` : forword section to `{`
-- `[[` : backword section to `{`
-- `][` : forword section to `}`
-- `[]` : backword section to `}`
+#### 常用命令
+
+- `)` : forward sentence
+- `(` : backward sentence
+- `}` : forward paragraph
+- `{` : backward paragraph
+- `]]` : forward section to `{`
+- `[[` : backward section to `{`
+- `][` : forward section to `}`
+- `[]` : forward section to `}`
+
+#### 个人心得
+
+我一般使用`{}` 进行移动，写代码的时候添加空行表示函数内逻辑的分隔，
+比如变量声明，`if` 语句，`for` 循环，`return` 之间都空一行，
+`{}` 的移动对我来说足够快了。
+
+`]]` `[[` 的移动依赖一些语法插件或代码风格。
 
 
 ## end
