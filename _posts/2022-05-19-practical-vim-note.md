@@ -29,9 +29,26 @@ tags:
 
 ## mode
 
-### command-line mode
+### Insert Mode
 
-#### address
+#### Digraph
+
+- `:digraphs` : Display the digraphs available
+
+Some useful **Digraph** :
+
+- `CTRL+K AN` : **∧** , logic and
+- `CTRL+K OR` : **∨** , logic or
+- `CTRL+K NO` : **¬** , logic not
+- `CTRL+K (-` : **∈** 
+- `CTRL+K ->` : **→**
+- `CTRL+K OK` : **✓**
+- `CTRL+K XX` : **✗**
+
+
+### Command-Line Mode
+
+#### Address
 
 - `.`: the current line.
 - `$`: the last line in the file.
@@ -40,7 +57,7 @@ tags:
 - `/pattern/`: `:/<html>/,/<\/html>/p`
 - `{address}+n`: set offset `.,.+3p`
 
-#### range
+#### Range
 
 ```
 :{start_addresss},{end_address}
@@ -243,6 +260,7 @@ So `//e<CR>` incrementally search.
 
 #### tips
 
+- `:g/useless/norm gu$`: combine a normal mode command with the global command, powerful!
 - `:g/TODO/copy$`: copy to the end of file for all the line which match the `TODO`.
 
 
@@ -304,9 +322,45 @@ Use [vim-gutentags](https://github.com/ludovicchabant/vim-gutentags) to generate
 
 ## misc
 
-- `g`字诀
-- `z`字诀
-- `[]`字诀
+### `g`字诀
+
+### `z`字诀
+
+###  `[`字诀
+
+大多`[` 相关的命令和前进/后退相关，因此有
+
+[vim-unimpaired](https://github.com/tpope/vim-unimpaired)
+
+这个对`[` 的扩充。
+
+
+文本对象：
+
+1. **sentence** 
+2. **paragraph** : 空行分隔为一个 **paragraph**
+3. **section** : `{}` 包围为一个 **section** ，但要求`{` 在第一列，因此`C` 代码的函数最好写成
+
+    ```
+    int func()
+    {
+
+    }
+    ```
+    的格式
+
+作用区域： **sentence** `<=` **paragraph** `<=` **section**
+
+
+- `)` : forword sentence
+- `(` : backword sentence
+- `}` : forword paragraph
+- `{` : backword paragraph
+- `]]` : forword section to `{`
+- `[[` : backword section to `{`
+- `][` : forword section to `}`
+- `[]` : backword section to `}`
+
 
 ## end
 
