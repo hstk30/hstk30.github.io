@@ -10,5 +10,6 @@
 - [Python Special Methods](https://diveintopython3.net/special-method-names.html): Python 的特殊方法对应关键词、内置函数等
 - [Nvidia with Docker](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/user-guide.html): `--gpus all`
 - [C/C++ standard](https://stackoverflow.com/questions/81656/where-do-i-find-the-current-c-or-c-standard-documents/83763#83763): 买不起
+- [flake8rules](https://www.flake8rules.com/): 不合我意，就把你去掉
 
 
