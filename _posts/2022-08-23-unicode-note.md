@@ -15,7 +15,7 @@ tags:
 
 bytes.decode -> str 将存在文件里的二进制byte **解码** 为我们能看的文本
 
-str.encode -> bytes 将我们能看的文本**编码** 为存在文件中的二进制byte
+str.encode -> bytes 将我们能看的文本 **编码** 为存在文件中的二进制byte
 
 `utf-8` 与字节顺序无关。
 
@@ -133,7 +133,7 @@ Out[6]: 3
 我对`大小写转换` 的算法还停留在`c语言` 里的 
 
 
-```
+```c
 char l_letter = u_letter + 'a' - 'A';
 ```
 

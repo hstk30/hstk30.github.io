@@ -10,7 +10,7 @@ Python 内存管理结构总览
 
 ![pool-layout](/img/in-post/Python-Source-Code/pool-layout.png)    
 
-```
+```c
 typedef uchar block;  
  
 struct pool_header {
@@ -58,7 +58,7 @@ return bp;
 ![arena-layout](/img/in-post/Python-Source-Code/arena-layout.png)    
 
 
-```
+```c
 struct arena_object {
  /* The address of the arena, as returned by malloc.  Note that 0
   * will never be returned by a successful malloc, and is used

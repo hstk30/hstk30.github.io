@@ -19,7 +19,7 @@ tags:
 
 我们直觉上，上面的图应该就对应下面的代码。
 
-```
+```C
 char a = 'a';
 char b = 'b';
 char* c = &b;
@@ -29,7 +29,7 @@ char d = 'd';
 但是，为什么呢？ 为什么第三个位置上的`0x02` 就因为它长的像一个地址，我们直觉上就是将它归为地址呢？
 把它解释为一个`字符` 值不行吗？就像
 
-```
+```c
 char a = 'a';
 char b = 'b';
 char c = 0x02;
@@ -41,17 +41,17 @@ char d = 'd';
 
 ## 一个简单的强制类型转换例子
 
-```
+```C
 int simple_exam() {
     int a = 1;
     int* p_a = &a;
     long cast_long = (long) p_a;
     
-    printf("size of point: %lu, size of long: %lu\n", sizeof(p_a), sizeof(cast_long));
+    printf("size of pointer: %lu, size of long: %lu\n", sizeof(p_a), sizeof(cast_long));
     printf("p_a value: %p, cast_long value: %lu\n", p_a, cast_long);   
      
     /* output:
-     size of point: 8, size of long: 8
+     size of pointer: 8, size of long: 8
      p_a value: 0x7ffee34cb8ec, cast_long value: 140732711876844
      */
 
@@ -68,7 +68,7 @@ Whatever，我举上面的例子主要是想说明，编译器对于合法的语
 
 ## 结构体的强制类型转换
 
-```
+```C
 typedef struct Ping{
     int a;
     char b;
@@ -119,7 +119,7 @@ address				      内存中的数据
 
 ## 实现一个多态
 
-```
+```C
 typedef struct man {
     char *name;
     int age;

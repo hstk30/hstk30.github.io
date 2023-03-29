@@ -14,7 +14,7 @@
 
 ## Code
 
-```
+```python
 def stop_by_return(c):
     for i in range(c):
         yield i
@@ -22,7 +22,7 @@ def stop_by_return(c):
             return
 ```
 
-```
+```python
 def stop_by_raise(c):
     for i in range(c):
         yield i
@@ -36,7 +36,7 @@ def stop_by_raise(c):
 
 ### Case1
 
-```
+```python
 for i in stop_by_return(10):
     print(i)
 ```
@@ -64,7 +64,7 @@ Output:
 ```
 ### Case2
 
-```
+```python
 for i in stop_by_raise(10):
     print(i)
 ```
@@ -73,6 +73,7 @@ for i in stop_by_raise(10):
 #### In Python3.6
 
 Output: 
+
 ```
 0
 1

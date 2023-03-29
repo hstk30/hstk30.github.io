@@ -38,4 +38,3 @@ case 3:
 - [Conversational Query Rewriting with Self-supervised Learning](https://arxiv.org/abs/2102.04708)
 - [Improving Open-Domain Dialogue Systems via Multi-Turn Incomplete Utterance Restoration](https://ai.tencent.com/ailab/nlp/dialogue/papers/EMNLP_zhufengpan.pdf)
 
-

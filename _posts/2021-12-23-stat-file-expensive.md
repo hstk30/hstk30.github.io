@@ -13,7 +13,7 @@ tags:
 # 一个日志引发的性能问题
 
 
-```
+```python
 import os
 import time
 
@@ -30,7 +30,7 @@ print(f'Used time: {end_time - start_time}')
 
 Used time: 37.93260073661804
 
-```
+```python
 import os
 import time
 
@@ -46,7 +46,7 @@ print(f'Used time: {end_time - start_time}')
 
 Used time: 0.10350179672241211
 
-```
+```python
 import os
 import time
 
