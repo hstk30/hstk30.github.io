@@ -112,3 +112,38 @@ class Embedding(nn.Embedding, LoRALayer):
 则增加了 `10000 * 8 + 8 * 100 = 80800` 的参数量，相对原来增加了
 `80800 / (10000 * 100) = 8.08%` ，也就是说使用 **LoRA** 后只要微调原来参数量的 **8%** 就行。
 
+
+## 实验结果
+
+![exp-data](/img/in-post/LoRA-data1.png)
+
+效果非常好，比 **FineTuning** 都好？？训练的参数量相差百倍级别。
+
+
+## 利用peft进行训练
+
+[peft](https://github.com/huggingface/peft)
+
+```Python
+from transformers import AutoModelForSeq2SeqLM
+from peft import get_peft_config, get_peft_model, LoraConfig, TaskType
+model_name_or_path = "bigscience/mt0-large"
+tokenizer_name_or_path = "bigscience/mt0-large"
+
+peft_config = LoraConfig(
+    task_type=TaskType.SEQ_2_SEQ_LM, inference_mode=False, r=8, lora_alpha=32, lora_dropout=0.1
+    
+)
+
+model = AutoModelForSeq2SeqLM.from_pretrained(model_name_or_path)
+model = get_peft_model(model, peft_config)
+model.print_trainable_parameters()
+# output: trainable params: 2359296 || all params: 1231940608 || trainable%: 0.19151053100118282
+```
+
+
+## 参考
+
+- [矩阵分解](https://zhuanlan.zhihu.com/p/52890135)
+- [奇异值分解](https://zh.wikipedia.org/wiki/%E5%A5%87%E5%BC%82%E5%80%BC%E5%88%86%E8%A7%A3)
+
