@@ -101,3 +101,10 @@ GPU数据移动函数
 - Exhibit an asynchronous behavior
 
 
+## 执行配置 `<<<grid, block>>>`
+
+`<<<grid, block>>>` 的配置影响你怎么处理、分配、划分你的浮点数据向量。
+好的划分，应该能考虑到内存/显存的亲和性。
+
+
+
