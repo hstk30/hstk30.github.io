@@ -12,7 +12,7 @@ tags:
 # LORA: LOW-RANK ADAPTATION OF LARGE LAN-GUAGE MODELS 学习
 
 
-[LoRA-overview](/img/in-post/LoRA.png)
+![LoRA-overview](/img/in-post/LoRA.png)
 
 
 ## 两种主流的高效调参策略
@@ -51,7 +51,7 @@ tags:
 
 \\[ \Delta W = BA \\]
 
-其中 \\( B \in \mathbb{R}{i \times r} \\) , \\( A \in \mathbb{R}{r \times o} \\)
+其中 \\( B \in \mathbb{R}^{i \times r} \\) , \\( A \in \mathbb{R}^{r \times o} \\)
 **r** 即可以设定的参数，具体的数学原理不确定（低秩降维分解），不过反正是反向传播近似更新参数的，
 不过把 *r* 设定为矩阵 \\( \Delta W \\) 的秩是不是能保留最多信息？
 
