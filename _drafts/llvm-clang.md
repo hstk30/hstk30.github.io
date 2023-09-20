@@ -52,12 +52,17 @@ fatal error: 'stdio.h' file not found
 
     llc main.bc -o main.s
 
-
 #### 有用的选项
 
 - `-run-pass=<pass-name>` Run compiler only for specified passes (comma separated list)
 - `-stop-after=<pass-name>` `-stop-before=<pass-name>` `-start-before` `-start-after`
+- `llc -global-isel -march=aarch64 -stop-after=irtranslator -simplify-mir`
 
+##### imported rule statistics
+
+    rm lib/Target/BPF/BPFGenGlobalISel.inc*
+    ninja -v lib/Target/BPF/BPFGenGlobalISel.inc*
+    llvm-tblgen -gen-global-isel ... --stats
 
 
 ### link .bc like ld
@@ -74,6 +79,7 @@ fatal error: 'stdio.h' file not found
 ### 调试
 
 - `-mllvm -debug-pass=Arguments` `-mllvm -debug-pass=Structure` 打印使用的优化Pass
+- `-mllvm -opt-bisect-limit=256` [OptBisect](https://llvm.org/docs/OptBisect.html)
 
 
 ## TableGen 配置选项解析
